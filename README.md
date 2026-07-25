@@ -1,5 +1,3 @@
-
-<img src="https://github.com/user-attachments/assets/a726dc30-6100-4920-b883-8519982b2aab"
 # DinryX HUB
 🔴 DinryX HUB — Automated Software Manager
 
