@@ -8,16 +8,27 @@
 ---
 
 ## 📸 Скріншоти інтерфейсу
-<p align="center">
- <img width="652" height="737" alt="DinryX HUB-Red Edition" src="https://github.com/user-attachments/assets/5a7a8368-0833-47c7-a815-faf124102b6d" />
- <img width="652" height="737" alt="DinryX HUB-Blue Neon" src="https://github.com/user-attachments/assets/2528ba7e-05d5-45f2-a9d4-b71141773aac" />
- <img width="653" height="736" alt="DinryX HUB-Green Cyber" src="https://github.com/user-attachments/assets/d2346c08-075e-4e79-bf95-7eed3c6322aa" />
- <img width="649" height="733" alt="DinryX HUB-Purple Violet" src="https://github.com/user-attachments/assets/db314993-c781-48fc-ae62-ffc9137e5e6b" />
- <img width="649" height="735" alt="DinryX HUB-Light, Red Edition" src="https://github.com/user-attachments/assets/cfcd5d5a-100b-4135-8d4e-8128703bb66e" />
- <img width="648" height="734" alt="DinryX HUB-Light, Blue Neon" src="https://github.com/user-attachments/assets/e69c825f-5a49-4120-8ba9-baf8e8caa8df" />
- <img width="648" height="735" alt="DinryX HUB-Light, Green Cyber" src="https://github.com/user-attachments/assets/71e28dc2-f83f-496b-a579-d6d65c969daf" />
- <img width="649" height="734" alt="DinryX HUB-Light, Purple Violet" src="https://github.com/user-attachments/assets/029aab28-5457-4cbc-9b6e-132a9d9de8ca" />
-</p>
+
+### 🌙 Темна тема
+<table>
+  <tr>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/5a7a8368-0833-47c7-a815-faf124102b6d" alt="DinryX HUB-Red Edition"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/2528ba7e-05d5-45f2-a9d4-b71141773aac" alt="DinryX HUB-Blue Neon"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/d2346c08-075e-4e79-bf95-7eed3c6322aa" alt="DinryX HUB-Green Cyber"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/db314993-c781-48fc-ae62-ffc9137e5e6b" alt="DinryX HUB-Purple Violet"></td>
+  </tr>
+</table>
+
+### ☀️ Світла тема
+<table>
+  <tr>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/cfcd5d5a-100b-4135-8d4e-8128703bb66e" alt="DinryX HUB-Light, Red Edition"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/e69c825f-5a49-4120-8ba9-baf8e8caa8df" alt="DinryX HUB-Light, Blue Neon"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/71e28dc2-f83f-496b-a579-d6d65c969daf" alt="DinryX HUB-Light, Green Cyber"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/029aab28-5457-4cbc-9b6e-132a9d9de8ca" alt="DinryX HUB-Light, Purple Violet"></td>
+  </tr>
+</table>
+
 ---
 
 ## 🚀 Що нового у версії 1.1.0?
