@@ -1,3 +1,5 @@
+
+<img src="https://github.com/user-attachments/assets/a726dc30-6100-4920-b883-8519982b2aab"
 # DinryX HUB
 🔴 DinryX HUB — Automated Software Manager
 
@@ -25,7 +27,7 @@
     <td width="25%"><img src="https://github.com/user-attachments/assets/cfcd5d5a-100b-4135-8d4e-8128703bb66e" alt="DinryX HUB-Light, Red Edition"></td>
     <td width="25%"><img src="https://github.com/user-attachments/assets/e69c825f-5a49-4120-8ba9-baf8e8caa8df" alt="DinryX HUB-Light, Blue Neon"></td>
     <td width="25%"><img src="https://github.com/user-attachments/assets/71e28dc2-f83f-496b-a579-d6d65c969daf" alt="DinryX HUB-Light, Green Cyber"></td>
-    <td width="25%"><img src="https://github.com/user-attachments/assets/029aab28-5457-4cbc-9b6e-132a9d9de8ca" alt="DinryX HUB-Light, Purple Violet"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/a726dc30-6100-4920-b883-8519982b2aab" alt="DinryX HUB-Light, Purple Violet"></td>
   </tr>
 </table>
 
