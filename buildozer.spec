@@ -9,6 +9,9 @@ package.name = dinryxhubmobile
 # Домен пакету
 package.domain = org.dinryx
 
+# ПОВІДОМЛЯЄМО ЗБИРАЧУ, ДЕ ЛЕЖАТЬ ФАЙЛИ ПРОЄКТУ
+source.dir = .
+
 # Які файли включати у збірку
 source.include_exts = py,png,jpg,kv,atlas
 
