@@ -13,7 +13,7 @@ package.domain = org.dinryx
 source.include_exts = py,png,jpg,kv,atlas
 
 # Головний файл скрипту
-source.main_file = main.py
+source.main_file = DinryX HUB Mobile.py
 
 # Версія додатку
 version = 1.0.0
