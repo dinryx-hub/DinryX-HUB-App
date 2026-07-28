@@ -16,7 +16,7 @@ source.include_exts = py,png,jpg,kv,atlas
 source.main_file = DinryX HUB Mobile.py
 
 # Версія додатку
-version = 1.0.0
+version = 1.1.0
 
 # Необхідні бібліотеки для Python
 requirements = python3,kivy,requests,urllib3,idna,certifi,charset-normalizer
