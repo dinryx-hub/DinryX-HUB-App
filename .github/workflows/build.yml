@@ -1,0 +1,35 @@
+name: Збірка DinryX APK у хмарі
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Клонування репозиторію
+      uses: actions/checkout@v4
+
+    - name: Встановлення системних залежностей
+      run: |
+        sudo apt update
+        sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5
+
+    - name: Встановлення Buildozer та Cython
+      run: |
+        pip3 install --upgrade pip
+        pip3 install --user Cython==0.29.33 buildozer
+
+    - name: Збірка Android APK
+      run: |
+        export PATH=$PATH:~/.local/bin
+        buildozer -v android debug
+
+    - name: Збереження готового APK (Артефакт)
+      uses: actions/upload-artifact@v4
+      with:
+        name: DinryX-Mobile-App
+        path: bin/*.apk
