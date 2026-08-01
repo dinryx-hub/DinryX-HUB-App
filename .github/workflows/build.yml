@@ -15,25 +15,27 @@ jobs:
       image: ghcr.io/kivy/buildozer:latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install Python dependencies
+      - name: Install compatible pip & Cython
         run: |
-          python3 -m pip install --upgrade pip
-          pip3 install Cython==0.29.36
+          python3 -m pip install "pip==24.3.1"
+          python3 -m pip install Cython==0.29.36
 
       - name: Accept Android SDK licenses
         run: |
           yes | sdkmanager --licenses || true
 
+      - name: Clean old Buildozer cache
+        run: |
+          rm -rf .buildozer
+
       - name: Build APK
         run: |
-         yes | buildozer android debug
+          yes | buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: DinryX-Mobile-APK
-          path: |
-            bin/*.apk
+          path: bin/*.apk
