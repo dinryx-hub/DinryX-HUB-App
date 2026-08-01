@@ -1,35 +1,57 @@
-name: Збірка DinryX APK у хмарі
+name: Build DinryX APK
 
 on:
-  push:
-    branches: [ main, master ]
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-    - name: Клонування репозиторію
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Встановлення системних залежностей
-      run: |
-        sudo apt update
-        sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
 
-    - name: Встановлення Buildozer та Cython
-      run: |
-        pip3 install --upgrade pip
-        pip3 install --user Cython==0.29.33 buildozer
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    - name: Збірка Android APK
-      run: |
-        export PATH=$PATH:~/.local/bin
-        buildozer -v android debug
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            git zip unzip autoconf automake libtool pkg-config \
+            zlib1g-dev libncurses5-dev libncursesw5-dev \
+            cmake libffi-dev libssl-dev
 
-    - name: Збереження готового APK (Артефакт)
-      uses: actions/upload-artifact@v4
-      with:
-        name: DinryX-Mobile-App
-        path: bin/*.apk
+      - name: Install Buildozer
+        run: |
+          python -m pip install --upgrade pip
+          pip install Cython==0.29.36 buildozer
+
+      - name: Accept Android SDK licenses
+        run: |
+          mkdir -p ~/.android
+          touch ~/.android/repositories.cfg
+          yes | ~/.local/bin/buildozer android update || true
+
+      - name: Build APK
+        run: |
+          export PATH=$HOME/.local/bin:$PATH
+          buildozer android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: DinryX-Mobile-APK
+          path: bin/*.apk
