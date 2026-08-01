@@ -11,15 +11,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    container:
+      image: ghcr.io/kivy/buildozer:latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install Cython==0.29.36
+
+      - name: Accept Android SDK licenses
+        run: |
+          yes | sdkmanager --licenses || true
+
       - name: Build APK
-        uses: ArtemSBulgakov/buildozer-action@v1
-        with:
-          workdir: .
-          buildozer_version: stable
+        run: |
+          buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
@@ -27,4 +37,3 @@ jobs:
           name: DinryX-Mobile-APK
           path: |
             bin/*.apk
-            **/*.apk
