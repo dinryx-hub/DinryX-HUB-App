@@ -16,7 +16,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 
 # Головний файл скрипту
-source.main_file = DinryX HUB Mobile.py
+source.main_file = DinryX-HUB-Mobile.py
 
 # Версія додатку
 version = 1.1.0
