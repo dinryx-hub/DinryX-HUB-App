@@ -17,18 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install compatible pip & Cython
+      - name: Fix pip & install Cython
         run: |
-          python3 -m pip install "pip==24.3.1"
+          python3 -m pip install pip==24.3.1
           python3 -m pip install Cython==0.29.36
+
+      - name: Clean Buildozer cache
+        run: |
+          rm -rf .buildozer
 
       - name: Accept Android SDK licenses
         run: |
           yes | sdkmanager --licenses || true
-
-      - name: Clean old Buildozer cache
-        run: |
-          rm -rf .buildozer
 
       - name: Build APK
         run: |
