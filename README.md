@@ -8,17 +8,6 @@
 ---
 
 ## 📸 Скріншоти інтерфейсу
-
-### 🌙 Темна тема
-<table>
-  <tr>
-    <td width="25%"><img src="https://github.com/user-attachments/assets/5a7a8368-0833-47c7-a815-faf124102b6d" alt="DinryX HUB-Red Edition"></td>
-    <td width="25%"><img src="https://github.com/user-attachments/assets/2528ba7e-05d5-45f2-a9d4-b71141773aac" alt="DinryX HUB-Blue Neon"></td>
-    <td width="25%"><img src="https://github.com/user-attachments/assets/d2346c08-075e-4e79-bf95-7eed3c6322aa" alt="DinryX HUB-Green Cyber"></td>
-    <td width="25%"><img src="https://github.com/user-attachments/assets/db314993-c781-48fc-ae62-ffc9137e5e6b" alt="DinryX HUB-Purple Violet"></td>
-  </tr>
-</table>
-
 ### ☀️ Світла тема
 <table>
   <tr>
@@ -29,12 +18,15 @@
   </tr>
 </table>
 
----
-
-## 🚀 Що нового у версії 1.1.0?
-- **Великий ребрендинг:** Проєкт повністю перейменовано на **DinryX HUB**!
-- **Перший великий реліз (v1.1.0):** Покращено стабільність, оновлено логіку завантаження файлів та структуру інтерфейсу.
-- **Оновлена збірка:** Виправлено відображення іконки додатка та додано автоматичне створення ярлика на Робочому столі.
+### 🌙 Темна тема
+<table>
+  <tr>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/5a7a8368-0833-47c7-a815-faf124102b6d" alt="DinryX HUB-Red Edition"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/2528ba7e-05d5-45f2-a9d4-b71141773aac" alt="DinryX HUB-Blue Neon"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/d2346c08-075e-4e79-bf95-7eed3c6322aa" alt="DinryX HUB-Green Cyber"></td>
+    <td width="25%"><img src="https://github.com/user-attachments/assets/db314993-c781-48fc-ae62-ffc9137e5e6b" alt="DinryX HUB-Purple Violet"></td>
+  </tr>
+</table>
 
 ---
 
@@ -53,51 +45,6 @@
 
 3. **Дистрибуція**
    * Готові збірки та інсталятори автоматично публікуються в розділі **GitHub Releases** для прямого та зручного завантаження.
-
----
-
-## 📦 Список підтримуваного софту
-
-### 🪟 Windows Edition
-
-| Категорія | Назва | Опис |
-| :--- | :--- | :--- |
-| **Утиліти** | `7-Zip` | Популярний і швидкий архіватор |
-| | `WinRAR` | Класичний архіватор |
-| **Браузери** | `Google Chrome` | Веббраузер від Google |
-| **Текст / Код**| `Notepad++` | Зручний текстовий редактор |
-| | `Sublime Text` | Швидкий редактор коду |
-| **Графіка** | `GIMP` | Безкоштовний графічний редактор |
-| **Офіс** | `LibreOffice` | Офісний пакет для документів |
-| **Ігри** | `Steam` | Ігрова платформа №1 |
-| | `Heroic Games Launcher` | Лаунчер Epic Games та GOG |
-| | `Game Jolt` | Ігрова платформа (Фан-ігри) |
-| | `TLauncher` | Лаунчер Minecraft |
-| **Розробка** | `ORACLE \| Java JDK 26` | Середовище виконання та розробка Java-додатків |
-| **Чати** | `Discord` | Месенджер для ґеймерів |
-| | `Telegram Desktop` | Зручний месенджер для ПК |
-
----
-
-### 🐧 Linux Edition
-
-| Категорія | Назва | Формат | Опис |
-| :--- | :--- | :---: | :--- |
-| **Браузери** | `Google Chrome` | `.deb` | Веббраузер від Google |
-| **Ігри** | `Steam` | `.deb` | Клієнт Steam для Linux |
-| | `Heroic Games Launcher` | `AppImage` | Лаунчер Epic Games & GOG |
-| | `TLauncher` | `.jar` | Лаунчер Minecraft |
-| **Розробка** | `ORACLE \| Java JDK 26` | `.deb` | Середовище виконання та розробка Java-додатків |
-| | `Sublime Text` | `.deb` | Надшвидкий текстовий редактор для коду |
-| **Чати** | `Discord` | `.deb` | Месенджер для ґеймерів |
-| **Графіка** | `GIMP` | `AppImage` | Растровий графічний редактор |
-| | `Inkscape` | `AppImage` | Векторна графіка |
-| | `Krita` | `AppImage` | Професійна програма для малювання |
-| **Мультимедіа**| `OBS Studio` | `.deb` | Запис екрана та проведення стрімів |
-| | `Kdenlive` | `AppImage` | Потужний відеоредактор для монтажу |
-| **Система** | `Stacer` | `AppImage` | Очищувач системи та моніторинг ресурсів |
-
----
 
 ## ⚡ Запуск
 
