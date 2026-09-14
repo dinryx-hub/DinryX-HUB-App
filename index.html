@@ -6,7 +6,7 @@
     <title>DinryX HUB — Автоматичний менеджер софту</title>
 
     <link rel="icon" type="image/x-icon" href="icon.ico">
-    <!-- Підключаємо скрипт Google Sign-In -->
+    <!-- Підключаємо офіційний скрипт Google Sign-In -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
@@ -568,9 +568,14 @@
             transform: scale(1.05);
         }
 
-        <footer>
-            <p>&copy; 2026 DinryX HUB. Всі права захищені.</p>
-        </footer>
+        footer {
+            padding: 30px;
+            text-align: center;
+            background-color: #0a0a0a;
+            border-top: 1px solid #1a1a1a;
+            color: #666;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -850,19 +855,48 @@
             }
         });
 
-        // Імітація / інтеграція входу через Google (через Google Identity Services)
-        document.getElementById('googleLoginBtn').addEventListener('click', () => {
-            // Для реального Google входу потрібен клієнтський ID від Google Cloud Console.
-            // Тут реалізовано швидкий вхід через демо-токен або запит вибору аккаунта:
-            const googleUsername = "Google User (Dev)";
-            localStorage.setItem('dinryx_current_user', googleUsername);
+        // --- РЕАЛЬНИЙ GOOGLE OAUTH ---
+        function handleCredentialResponse(response) {
+            // Розшифрування JWT токена від Google
+            const responsePayload = decodeJwtResponse(response.credential);
+            const userName = responsePayload.name || responsePayload.email;
+
+            // Зберігаємо ім'я користувача у сесію
+            localStorage.setItem('dinryx_current_user', userName);
             modal.classList.remove('active');
             checkAuthUser();
-        });
+        }
 
-        // Імітація входу через Telegram
+        function decodeJwtResponse(token) {
+            let base64Url = token.split('.')[1];
+            let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            let jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        window.onload = function () {
+            // Ініціалізація Google API (Обов'язково вставте свій Client ID нижче замість тексту у лапках)
+            google.accounts.id.initialize({
+                client_id: "654065478365-hho6mq4ctv12ja3ajof7ib5evfa3pbea.apps.googleusercontent.com.apps.googleusercontent.com", 
+                callback: handleCredentialResponse
+            });
+        };
+
+        // Клік по нашій кнопці Google викликає вікно авторизації
+        document.getElementById('googleLoginBtn').addEventListener('click', () => {
+            google.accounts.id.prompt((notification) => {
+                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                    // Якщо браузер заблокував поп-ап, рендеримо стандартну кнопку Google
+                    alert("Будь ласка, дозвольте спливаючі вікна або налаштуйте свій Client ID Google OAuth.");
+                }
+            });
+        });
+        // -----------------------------
+
+        // Імітація входу через Telegram (залишено як є)
         document.getElementById('telegramLoginBtn').addEventListener('click', () => {
-            // У реальному проєкті тут відкривається Telegram Widget (або шлюз бота)
             let tgName = prompt("Введіть ваш Telegram username (наприклад, @username):", "@dinryx_user");
             if (tgName) {
                 if(!tgName.startsWith('@')) tgName = '@' + tgName;
