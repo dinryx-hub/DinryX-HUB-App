@@ -879,10 +879,9 @@
         window.onload = function () {
             // Ініціалізація Google API (Обов'язково вставте свій Client ID нижче замість тексту у лапках)
             google.accounts.id.initialize({
-                client_id: "654065478365-hho6mq4ctv12ja3ajof7ib5evfa3pbea.apps.googleusercontent.com.apps.googleusercontent.com", 
+                client_id: "654065478365-hho6mq4ctv12ja3ajof7ib5evfa3pbea.apps.googleusercontent.com", 
                 callback: handleCredentialResponse
             });
-        };
 
         // Клік по нашій кнопці Google викликає вікно авторизації
         document.getElementById('googleLoginBtn').addEventListener('click', () => {
