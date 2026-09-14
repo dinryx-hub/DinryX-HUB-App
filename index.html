@@ -6,6 +6,8 @@
     <title>DinryX HUB — Автоматичний менеджер софту</title>
 
     <link rel="icon" type="image/x-icon" href="icon.ico">
+    <!-- Підключаємо скрипт Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
         * {
@@ -77,14 +79,243 @@
             border-radius: 4px;
         }
 
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
         nav a {
-            margin-left: 25px;
             color: #aaa;
             font-weight: 600;
         }
 
         nav a:hover {
             color: #ff4b2b;
+        }
+
+        .auth-btn {
+            background: #1a1a1a;
+            border: 1px solid #ff4b2b;
+            color: #ff4b2b;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            background: #ff4b2b;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 75, 43, 0.4);
+        }
+
+        /* Модальне вікно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #151515;
+            border: 1px solid #333;
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: #ff4b2b;
+        }
+
+        .modal-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #222;
+        }
+
+        .modal-tab {
+            flex: 1;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 16px;
+            font-weight: 700;
+            padding-bottom: 10px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-tab.active {
+            color: #ff4b2b;
+            border-bottom: 2px solid #ff4b2b;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #ff4b2b;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 12px;
+            background: #ff4b2b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 5px;
+        }
+
+        .form-submit:hover {
+            background: #ff2200;
+        }
+
+        .form-error {
+            color: #ff4b2b;
+            font-size: 13px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        /* Соціальні кнопки входу */
+        .social-auth-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #666;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        .social-auth-divider::before, .social-auth-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #262626;
+        }
+
+        .social-auth-divider::before { margin-right: 10px; }
+        .social-auth-divider::after { margin-left: 10px; }
+
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-social {
+            width: 100%;
+            padding: 11px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.2s;
+            border: 1px solid #333;
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .btn-google:hover {
+            background: #252525;
+            border-color: #555;
+        }
+
+        .btn-telegram {
+            background: #229ed9;
+            border-color: #229ed9;
+            color: #fff;
+        }
+
+        .btn-telegram:hover {
+            background: #1d8bc0;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1a1a1a;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .user-profile span {
+            font-weight: 600;
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #ff4b2b;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            text-decoration: underline;
         }
 
         .hero {
@@ -168,7 +399,6 @@
         .btn-download:hover {
             background-color: #ff2200;
             border-color: #ff2200;
-            color: #ffffff;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
         }
@@ -338,26 +568,83 @@
             transform: scale(1.05);
         }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            background-color: #050505;
-            border-top: 1px solid #1a1a1a;
-            color: #555;
-            font-size: 14px;
-        }
+        <footer>
+            <p>&copy; 2026 DinryX HUB. Всі права захищені.</p>
+        </footer>
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">DinryX HUB <span>v1.4.0</span></div>
-        <nav>
-            <a href="#how">Як працює</a>
-            <a href="#features">Можливості</a>
-            <a href="#about">Програми</a>
-        </nav>
+        <div class="nav-container">
+            <nav>
+                <a href="#how">Як працює</a>
+                <a href="#features">Можливості</a>
+                <a href="#about">Програми</a>
+            </nav>
+            <div id="authContainer">
+                <button class="auth-btn" id="openAuthModal">Увійти</button>
+            </div>
+        </div>
     </header>
+
+    <!-- Модальне вікно Авторизації / Реєстрації -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-tabs">
+                <button class="modal-tab active" data-tab="login">Вхід</button>
+                <button class="modal-tab" data-tab="register">Реєстрація</button>
+            </div>
+
+            <!-- Форма входу -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email або Логін</label>
+                    <input type="text" id="loginEmail" required placeholder="Введіть логін">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <div class="form-error" id="loginError">Невірний логін або пароль</div>
+                <button type="submit" class="form-submit">Увійти</button>
+            </form>
+
+            <!-- Форма реєстрації -->
+            <form id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label>Логін</label>
+                    <input type="text" id="regUsername" required placeholder="Ваш нікнейм">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" id="regPassword" required placeholder="••••••••">
+                </div>
+                <div class="form-error" id="regError">Користувач вже існує або помилка даних</div>
+                <button type="submit" class="form-submit">Створити акаунт</button>
+            </form>
+
+            <div class="social-auth-divider">або увійдіть через</div>
+
+            <!-- Кнопки швидкого входу (Google & Telegram) -->
+            <div class="social-buttons">
+                <button type="button" class="btn-social btn-google" id="googleLoginBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.2 9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15s.7 5.3 1.9 7.7l3.7-2.9c-.4-.7-.6-1.5-.6-2.4z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.2-6.4-5.1L1.9 15.7C3.7 19.4 7.5 23 12 23z"/></svg>
+                    Увійти через Google
+                </button>
+                <button type="button" class="btn-social btn-telegram" id="telegramLoginBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27 0-.12.07-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.02-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.11-1.79 6.85-2.97 8.22-3.55 3.91-1.65 4.72-1.94 5.25-1.95.12 0 .38.03.55.17.14.12.18.28.2.4-.02.07-.02.38-.05.61z"/></svg>
+                    Увійти через Telegram
+                </button>
+            </div>
+        </div>
+    </div>
 
     <section class="hero">
         <div class="badge">🔴 v1.4.0</div>
@@ -473,5 +760,120 @@
         <p>&copy; 2026 DinryX HUB. Всі права захищені.</p>
     </footer>
 
+    <script>
+        const modal = document.getElementById('authModal');
+        const openModalBtn = document.getElementById('openAuthModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const tabs = document.querySelectorAll('.modal-tab');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const authContainer = document.getElementById('authContainer');
+
+        // Відкриття / закриття модалки
+        openModalBtn?.addEventListener('click', () => modal.classList.add('active'));
+        closeModalBtn?.addEventListener('click', () => modal.classList.remove('active'));
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+        });
+
+        // Перемикання між Входом та Реєстрацією
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                if (tab.dataset.tab === 'login') {
+                    loginForm.style.display = 'block';
+                    registerForm.style.display = 'none';
+                } else {
+                    loginForm.style.display = 'none';
+                    registerForm.style.display = 'block';
+                }
+            });
+        });
+
+        // Функція оновлення шапки сайту після входу
+        function checkAuthUser() {
+            const currentUser = localStorage.getItem('dinryx_current_user');
+            if (currentUser) {
+                authContainer.innerHTML = `
+                    <div class="user-profile">
+                        <span>👤 ${currentUser}</span>
+                        <button class="logout-btn" id="logoutBtn">Вийти</button>
+                    </div>
+                `;
+                document.getElementById('logoutBtn').addEventListener('click', () => {
+                    localStorage.removeItem('dinryx_current_user');
+                    location.reload();
+                });
+            }
+        }
+
+        // Обробка Реєстрації
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+
+            let users = JSON.parse(localStorage.getItem('dinryx_users')) || [];
+            
+            if (users.some(u => u.email === email || u.username === username)) {
+                document.getElementById('regError').style.display = 'block';
+                document.getElementById('regError').textContent = 'Користувач з таким ім’ям або поштою вже існує!';
+                return;
+            }
+
+            users.push({ username, email, password });
+            localStorage.setItem('dinryx_users', JSON.stringify(users));
+            localStorage.setItem('dinryx_current_user', username);
+
+            modal.classList.remove('active');
+            checkAuthUser();
+        });
+
+        // Обробка Входу
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const loginInput = document.getElementById('loginEmail').value;
+            const passwordInput = document.getElementById('loginPassword').value;
+
+            let users = JSON.parse(localStorage.getItem('dinryx_users')) || [];
+            const user = users.find(u => (u.email === loginInput || u.username === loginInput) && u.password === passwordInput);
+
+            if (user) {
+                localStorage.setItem('dinryx_current_user', user.username);
+                modal.classList.remove('active');
+                checkAuthUser();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+
+        // Імітація / інтеграція входу через Google (через Google Identity Services)
+        document.getElementById('googleLoginBtn').addEventListener('click', () => {
+            // Для реального Google входу потрібен клієнтський ID від Google Cloud Console.
+            // Тут реалізовано швидкий вхід через демо-токен або запит вибору аккаунта:
+            const googleUsername = "Google User (Dev)";
+            localStorage.setItem('dinryx_current_user', googleUsername);
+            modal.classList.remove('active');
+            checkAuthUser();
+        });
+
+        // Імітація входу через Telegram
+        document.getElementById('telegramLoginBtn').addEventListener('click', () => {
+            // У реальному проєкті тут відкривається Telegram Widget (або шлюз бота)
+            let tgName = prompt("Введіть ваш Telegram username (наприклад, @username):", "@dinryx_user");
+            if (tgName) {
+                if(!tgName.startsWith('@')) tgName = '@' + tgName;
+                localStorage.setItem('dinryx_current_user', tgName);
+                modal.classList.remove('active');
+                checkAuthUser();
+            }
+        });
+
+        // Перевірка при завантаженні сторінки
+        checkAuthUser();
+    </script>
 </body>
 </html>
